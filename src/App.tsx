@@ -373,13 +373,15 @@ function Projects() {
               transition={{ delay: (index % 2) * 0.08 }}
               whileHover={{ y: -8 }}
             >
-              {(project.no === "01" || project.no === "02") && (
+              {["01", "02", "03"].includes(project.no) && (
                 <a
                   className="project-detail-link"
                   href={
                     project.no === "01"
                       ? "#/project/xiaomi-auto"
-                      : "#/project/xigua-camp"
+                      : project.no === "02"
+                        ? "#/project/xigua-camp"
+                        : "#/project/barbiepuff"
                   }
                   aria-label={`查看${project.title}项目详情`}
                 />
@@ -634,6 +636,66 @@ function XiguaProjectDetail() {
   );
 }
 
+function BarbiePuffProjectDetail() {
+  const detailImages = Array.from(
+    { length: 14 },
+    (_, index) => `detail-${String(index + 1).padStart(2, "0")}.jpg`,
+  );
+
+  return (
+    <main className="project-detail-page barbie-detail-page">
+      <header className="detail-nav">
+        <a className="brand-mark" href={`${import.meta.env.BASE_URL}#home`}>
+          CKG<span>°</span>
+        </a>
+        <span>PROJECT / 03</span>
+        <a className="detail-back" href={`${import.meta.env.BASE_URL}#projects`}>
+          返回作品列表 <b>↙</b>
+        </a>
+      </header>
+
+      <section className="detail-hero">
+        <div className="detail-hero-index">03</div>
+        <div>
+          <p>BRAND IDENTITY / PRODUCT PACKAGING</p>
+          <h1>BARBIEPUFF 品牌设计</h1>
+          <ul>
+            <li>品牌 VI</li>
+            <li>包装设计</li>
+            <li>产品视觉</li>
+          </ul>
+        </div>
+        <span className="detail-scroll">SCROLL TO VIEW ↓</span>
+      </section>
+
+      <section className="detail-gallery" aria-label="BARBIEPUFF 品牌设计项目作品">
+        {detailImages.map((image, index) => (
+          <motion.img
+            key={image}
+            src={`${import.meta.env.BASE_URL}projects/barbiepuff/${image}`}
+            alt={`BARBIEPUFF 品牌设计项目展示 ${index + 1}`}
+            loading={index === 0 ? "eager" : "lazy"}
+            initial={{ opacity: 0, y: 22 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.03 }}
+            transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
+          />
+        ))}
+      </section>
+
+      <footer className="detail-footer">
+        <div>
+          <span>END OF PROJECT</span>
+          <h2>感谢观看。</h2>
+        </div>
+        <a href={`${import.meta.env.BASE_URL}#projects`}>
+          返回全部作品 <span>↗</span>
+        </a>
+      </footer>
+    </main>
+  );
+}
+
 function PortfolioHome() {
   return (
     <main>
@@ -662,5 +724,6 @@ export default function Home() {
 
   if (route === "#/project/xiaomi-auto") return <XiaomiProjectDetail />;
   if (route === "#/project/xigua-camp") return <XiguaProjectDetail />;
+  if (route === "#/project/barbiepuff") return <BarbiePuffProjectDetail />;
   return <PortfolioHome />;
 }
