@@ -6,7 +6,7 @@ import {
   useScroll,
   useTransform,
 } from "framer-motion";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const navItems = [
   ["首页", "home"],
@@ -373,6 +373,13 @@ function Projects() {
               transition={{ delay: (index % 2) * 0.08 }}
               whileHover={{ y: -8 }}
             >
+              {project.no === "01" && (
+                <a
+                  className="project-detail-link"
+                  href="#/project/xiaomi-auto"
+                  aria-label="查看小米汽车视觉物料项目详情"
+                />
+              )}
               <div className={`project-cover ${project.className}`}>
                 <img
                   className="project-image"
@@ -502,7 +509,64 @@ function Contact() {
   );
 }
 
-export default function Home() {
+function XiaomiProjectDetail() {
+  const detailImages = ["detail-01.jpg", "detail-02.jpg", "detail-03.jpg"];
+
+  return (
+    <main className="project-detail-page">
+      <header className="detail-nav">
+        <a className="brand-mark" href={`${import.meta.env.BASE_URL}#home`}>
+          CKG<span>°</span>
+        </a>
+        <span>PROJECT / 01</span>
+        <a className="detail-back" href={`${import.meta.env.BASE_URL}#projects`}>
+          返回作品列表 <b>↙</b>
+        </a>
+      </header>
+
+      <section className="detail-hero">
+        <div className="detail-hero-index">01</div>
+        <div>
+          <p>BRAND VISUAL / COMMERCIAL CAMPAIGN</p>
+          <h1>小米汽车视觉物料</h1>
+          <ul>
+            <li>品牌视觉</li>
+            <li>商业宣传</li>
+            <li>社媒营销海报</li>
+          </ul>
+        </div>
+        <span className="detail-scroll">SCROLL TO VIEW ↓</span>
+      </section>
+
+      <section className="detail-gallery" aria-label="小米汽车项目作品">
+        {detailImages.map((image, index) => (
+          <motion.img
+            key={image}
+            src={`${import.meta.env.BASE_URL}projects/xiaomi-auto/${image}`}
+            alt={`小米汽车视觉物料项目展示 ${index + 1}`}
+            loading={index === 0 ? "eager" : "lazy"}
+            initial={{ opacity: 0, y: 22 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.03 }}
+            transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
+          />
+        ))}
+      </section>
+
+      <footer className="detail-footer">
+        <div>
+          <span>END OF PROJECT</span>
+          <h2>感谢观看。</h2>
+        </div>
+        <a href={`${import.meta.env.BASE_URL}#projects`}>
+          返回全部作品 <span>↗</span>
+        </a>
+      </footer>
+    </main>
+  );
+}
+
+function PortfolioHome() {
   return (
     <main>
       <Nav />
@@ -512,5 +576,25 @@ export default function Home() {
       <Skills />
       <Contact />
     </main>
+  );
+}
+
+export default function Home() {
+  const [route, setRoute] = useState(() => window.location.hash);
+
+  useEffect(() => {
+    const handleHashChange = () => {
+      setRoute(window.location.hash);
+      window.scrollTo({ top: 0, behavior: "instant" });
+    };
+
+    window.addEventListener("hashchange", handleHashChange);
+    return () => window.removeEventListener("hashchange", handleHashChange);
+  }, []);
+
+  return route === "#/project/xiaomi-auto" ? (
+    <XiaomiProjectDetail />
+  ) : (
+    <PortfolioHome />
   );
 }
