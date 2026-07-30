@@ -373,7 +373,7 @@ function Projects() {
               transition={{ delay: (index % 2) * 0.08 }}
               whileHover={{ y: -8 }}
             >
-              {["01", "02", "03"].includes(project.no) && (
+              {["01", "02", "03", "04"].includes(project.no) && (
                 <a
                   className="project-detail-link"
                   href={
@@ -381,7 +381,9 @@ function Projects() {
                       ? "#/project/xiaomi-auto"
                       : project.no === "02"
                         ? "#/project/xigua-camp"
-                        : "#/project/barbiepuff"
+                        : project.no === "03"
+                          ? "#/project/barbiepuff"
+                          : "#/project/pet-vlog"
                   }
                   aria-label={`查看${project.title}项目详情`}
                 />
@@ -696,6 +698,66 @@ function BarbiePuffProjectDetail() {
   );
 }
 
+function PetVlogProjectDetail() {
+  const detailImages = Array.from(
+    { length: 8 },
+    (_, index) => `detail-${String(index + 1).padStart(2, "0")}.jpg`,
+  );
+
+  return (
+    <main className="project-detail-page pet-detail-page">
+      <header className="detail-nav">
+        <a className="brand-mark" href={`${import.meta.env.BASE_URL}#home`}>
+          CKG<span>°</span>
+        </a>
+        <span>PROJECT / 04</span>
+        <a className="detail-back" href={`${import.meta.env.BASE_URL}#projects`}>
+          返回作品列表 <b>↙</b>
+        </a>
+      </header>
+
+      <section className="detail-hero">
+        <div className="detail-hero-index">04</div>
+        <div>
+          <p>EVENT VISUAL / SOCIAL MEDIA CAMPAIGN</p>
+          <h1>小红书宠物治愈 VLOG 创作大赛</h1>
+          <ul>
+            <li>活动视觉</li>
+            <li>新媒体运营</li>
+            <li>社媒设计</li>
+          </ul>
+        </div>
+        <span className="detail-scroll">SCROLL TO VIEW ↓</span>
+      </section>
+
+      <section className="detail-gallery" aria-label="小红书宠物治愈 VLOG 项目作品">
+        {detailImages.map((image, index) => (
+          <motion.img
+            key={image}
+            src={`${import.meta.env.BASE_URL}projects/pet-vlog/${image}`}
+            alt={`小红书宠物治愈 VLOG 项目展示 ${index + 1}`}
+            loading={index === 0 ? "eager" : "lazy"}
+            initial={{ opacity: 0, y: 22 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.03 }}
+            transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
+          />
+        ))}
+      </section>
+
+      <footer className="detail-footer">
+        <div>
+          <span>END OF PROJECT</span>
+          <h2>感谢观看。</h2>
+        </div>
+        <a href={`${import.meta.env.BASE_URL}#projects`}>
+          返回全部作品 <span>↗</span>
+        </a>
+      </footer>
+    </main>
+  );
+}
+
 function PortfolioHome() {
   return (
     <main>
@@ -725,5 +787,6 @@ export default function Home() {
   if (route === "#/project/xiaomi-auto") return <XiaomiProjectDetail />;
   if (route === "#/project/xigua-camp") return <XiguaProjectDetail />;
   if (route === "#/project/barbiepuff") return <BarbiePuffProjectDetail />;
+  if (route === "#/project/pet-vlog") return <PetVlogProjectDetail />;
   return <PortfolioHome />;
 }
