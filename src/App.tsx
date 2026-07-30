@@ -22,6 +22,7 @@ const projects = [
     title: "小米汽车视觉物料",
     tags: ["品牌视觉", "商业宣传"],
     className: "project-xiaomi",
+    image: "xiaomi-auto.jpg",
     caption: "XIAOMI AUTO / VISUAL CAMPAIGN",
   },
   {
@@ -29,6 +30,7 @@ const projects = [
     title: "西瓜创客·科学创造训练营教育营销长图",
     tags: ["新媒体运营设计", "教育类活动视觉"],
     className: "project-xigua",
+    image: "xigua-camp.jpg",
     caption: "STEM CAMP / SOCIAL CAMPAIGN",
   },
   {
@@ -36,6 +38,7 @@ const projects = [
     title: "BARBIEPUFF 箱包品牌设计与产品包装",
     tags: ["品牌 VI", "包装设计"],
     className: "project-barbie",
+    image: "barbiepuff.jpg",
     caption: "BARBIEPUFF / BRAND IDENTITY",
   },
   {
@@ -43,6 +46,7 @@ const projects = [
     title: "小红书宠物治愈 VLOG 创作大赛",
     tags: ["活动视觉", "新媒体运营"],
     className: "project-pet",
+    image: "pet-vlog.jpg",
     caption: "PET VLOG / EVENT DESIGN",
   },
   {
@@ -50,6 +54,7 @@ const projects = [
     title: "天猫双 12 年终大促",
     tags: ["电商视觉", "运营设计"],
     className: "project-tmall",
+    image: "tmall-1212.jpg",
     caption: "TMALL 12.12 / E-COMMERCE",
   },
   {
@@ -58,6 +63,7 @@ const projects = [
     subtitle: "紫调轻筑云庭、粉绒兔居甜岛",
     tags: ["三维建模", "C4D 视觉"],
     className: "project-3d",
+    image: "3d-scene.jpg",
     caption: "3D SPACE / VISUAL EXPLORATION",
   },
   {
@@ -65,6 +71,7 @@ const projects = [
     title: "今日心象天气",
     tags: ["交互式网页", "UI 设计"],
     className: "project-weather",
+    image: "mood-weather.jpg",
     caption: "MOOD WEATHER / INTERACTIVE UI",
   },
 ];
@@ -365,12 +372,13 @@ function Projects() {
               whileHover={{ y: -8 }}
             >
               <div className={`project-cover ${project.className}`}>
+                <img
+                  className="project-image"
+                  src={`${import.meta.env.BASE_URL}projects/${project.image}`}
+                  alt={`${project.title}项目封面`}
+                  loading="lazy"
+                />
                 <span className="project-cover-caption">{project.caption}</span>
-                <div className="cover-art" aria-hidden="true">
-                  <i />
-                  <b>{project.no}</b>
-                </div>
-                <span className="image-note">PROJECT COVER PLACEHOLDER</span>
               </div>
               <div className="project-meta">
                 <span className="project-no">/ {project.no}</span>
