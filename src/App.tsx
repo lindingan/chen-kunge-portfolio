@@ -510,7 +510,7 @@ function Contact() {
 }
 
 function XiaomiProjectDetail() {
-  const detailImages = ["detail-01.jpg", "detail-02.jpg", "detail-03.jpg"];
+  const detailImages = ["detail-01.jpg", "detail-03.jpg", "detail-02.jpg"];
 
   return (
     <main className="project-detail-page">
