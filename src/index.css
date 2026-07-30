@@ -715,6 +715,20 @@ button {
   color: #43bdf1;
 }
 
+.barbie-detail-page {
+  background: #fff1f8;
+}
+
+.barbie-detail-page .detail-hero {
+  background:
+    radial-gradient(circle at 77% 21%, rgba(255, 255, 255, 0.96), transparent 27%),
+    linear-gradient(135deg, #ffd6ea, #fff8fb 66%);
+}
+
+.barbie-detail-page .detail-hero-index {
+  color: #f47fbc;
+}
+
 .detail-hero-index {
   color: #8da2f4;
   font-size: clamp(100px, 14vw, 230px);
