@@ -729,6 +729,20 @@ button {
   color: #f47fbc;
 }
 
+.pet-detail-page {
+  background: #fff7e8;
+}
+
+.pet-detail-page .detail-hero {
+  background:
+    radial-gradient(circle at 77% 21%, rgba(255, 255, 255, 0.94), transparent 27%),
+    linear-gradient(135deg, #f4e5c8, #fffaf1 66%);
+}
+
+.pet-detail-page .detail-hero-index {
+  color: #a8aa5b;
+}
+
 .detail-hero-index {
   color: #8da2f4;
   font-size: clamp(100px, 14vw, 230px);
