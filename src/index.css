@@ -1312,15 +1312,14 @@ button {
   gap: 14px;
 }
 
-.qr-placeholder div {
+.qr-placeholder img {
   width: 84px;
   height: 84px;
-  display: grid;
-  place-items: center;
-  border: 1px dashed rgba(255, 255, 255, 0.4);
-  color: rgba(255, 255, 255, 0.45);
-  font-size: 13px;
-  letter-spacing: 0.16em;
+  display: block;
+  object-fit: contain;
+  padding: 4px;
+  background: #fff;
+  border-radius: 4px;
 }
 
 .contact-inner footer {
