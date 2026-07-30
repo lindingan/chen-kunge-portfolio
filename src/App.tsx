@@ -373,11 +373,15 @@ function Projects() {
               transition={{ delay: (index % 2) * 0.08 }}
               whileHover={{ y: -8 }}
             >
-              {project.no === "01" && (
+              {(project.no === "01" || project.no === "02") && (
                 <a
                   className="project-detail-link"
-                  href="#/project/xiaomi-auto"
-                  aria-label="查看小米汽车视觉物料项目详情"
+                  href={
+                    project.no === "01"
+                      ? "#/project/xiaomi-auto"
+                      : "#/project/xigua-camp"
+                  }
+                  aria-label={`查看${project.title}项目详情`}
                 />
               )}
               <div className={`project-cover ${project.className}`}>
@@ -566,6 +570,70 @@ function XiaomiProjectDetail() {
   );
 }
 
+function XiguaProjectDetail() {
+  const detailImages = [
+    "detail-01.jpg",
+    "detail-02.jpg",
+    "detail-03.jpg",
+    "detail-04.jpg",
+    "detail-05.jpg",
+    "detail-06.jpg",
+  ];
+
+  return (
+    <main className="project-detail-page xigua-detail-page">
+      <header className="detail-nav">
+        <a className="brand-mark" href={`${import.meta.env.BASE_URL}#home`}>
+          CKG<span>°</span>
+        </a>
+        <span>PROJECT / 02</span>
+        <a className="detail-back" href={`${import.meta.env.BASE_URL}#projects`}>
+          返回作品列表 <b>↙</b>
+        </a>
+      </header>
+
+      <section className="detail-hero">
+        <div className="detail-hero-index">02</div>
+        <div>
+          <p>EDUCATION CAMPAIGN / SOCIAL MEDIA DESIGN</p>
+          <h1>西瓜创客·科学创造训练营</h1>
+          <ul>
+            <li>新媒体运营设计</li>
+            <li>教育类活动视觉</li>
+            <li>营销长图</li>
+          </ul>
+        </div>
+        <span className="detail-scroll">SCROLL TO VIEW ↓</span>
+      </section>
+
+      <section className="detail-gallery" aria-label="西瓜创客项目作品">
+        {detailImages.map((image, index) => (
+          <motion.img
+            key={image}
+            src={`${import.meta.env.BASE_URL}projects/xigua-camp/${image}`}
+            alt={`西瓜创客科学创造训练营项目展示 ${index + 1}`}
+            loading={index === 0 ? "eager" : "lazy"}
+            initial={{ opacity: 0, y: 22 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.03 }}
+            transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
+          />
+        ))}
+      </section>
+
+      <footer className="detail-footer">
+        <div>
+          <span>END OF PROJECT</span>
+          <h2>感谢观看。</h2>
+        </div>
+        <a href={`${import.meta.env.BASE_URL}#projects`}>
+          返回全部作品 <span>↗</span>
+        </a>
+      </footer>
+    </main>
+  );
+}
+
 function PortfolioHome() {
   return (
     <main>
@@ -592,9 +660,7 @@ export default function Home() {
     return () => window.removeEventListener("hashchange", handleHashChange);
   }, []);
 
-  return route === "#/project/xiaomi-auto" ? (
-    <XiaomiProjectDetail />
-  ) : (
-    <PortfolioHome />
-  );
+  if (route === "#/project/xiaomi-auto") return <XiaomiProjectDetail />;
+  if (route === "#/project/xigua-camp") return <XiguaProjectDetail />;
+  return <PortfolioHome />;
 }
