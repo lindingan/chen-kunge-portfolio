@@ -401,68 +401,48 @@ button {
   gap: clamp(52px, 8vw, 130px);
 }
 
-.portrait-placeholder {
+.portrait-frame {
   position: sticky;
   top: 110px;
-  height: min(68vw, 730px);
-  min-height: 570px;
+  width: 100%;
+  aspect-ratio: 4 / 5;
   overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  padding: clamp(24px, 3vw, 44px);
   border-radius: 2px;
-  color: white;
-  background:
-    radial-gradient(circle at 72% 23%, rgba(255, 255, 255, 0.55), transparent 12%),
-    linear-gradient(148deg, #cfd6f7 0%, #9ba9e2 43%, #6e78a0 100%);
+  background: #85828b;
 }
 
-.portrait-placeholder::before {
+.portrait-frame img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  transition: transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.portrait-frame::after {
   content: "";
   position: absolute;
-  width: 60%;
-  height: 75%;
-  left: 20%;
-  top: 19%;
-  border: 1px solid rgba(255, 255, 255, 0.4);
-  border-radius: 48% 48% 18% 18%;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 68%, rgba(17, 18, 23, 0.34));
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.18);
+  pointer-events: none;
 }
 
-.portrait-placeholder::after {
-  content: "";
+.portrait-frame:hover img {
+  transform: scale(1.018);
+}
+
+.portrait-frame span {
   position: absolute;
-  width: 48%;
-  aspect-ratio: 1;
-  right: -19%;
-  top: -10%;
-  border: 1px solid rgba(255, 255, 255, 0.5);
-  border-radius: 50%;
-}
-
-.portrait-monogram {
-  position: relative;
+  left: clamp(20px, 2vw, 32px);
+  bottom: clamp(20px, 2vw, 30px);
   z-index: 2;
-  margin-bottom: auto;
-  font-size: clamp(75px, 8vw, 130px);
-  line-height: 0.8;
-  font-weight: 700;
-  letter-spacing: -0.1em;
-  opacity: 0.78;
-}
-
-.portrait-placeholder span,
-.portrait-placeholder em {
-  position: relative;
-  z-index: 2;
+  color: rgba(255, 255, 255, 0.92);
   font-size: 9px;
-  font-style: normal;
-  letter-spacing: 0.14em;
-}
-
-.portrait-placeholder em {
-  margin-top: 8px;
-  color: rgba(255, 255, 255, 0.68);
+  font-weight: 700;
+  letter-spacing: 0.16em;
 }
 
 .small-label {
@@ -1158,10 +1138,6 @@ button {
     gap: 46px;
   }
 
-  .portrait-placeholder {
-    min-height: 520px;
-  }
-
   .ability-grid {
     grid-template-columns: repeat(2, 1fr);
   }
@@ -1289,11 +1265,10 @@ button {
     grid-template-columns: 1fr;
   }
 
-  .portrait-placeholder {
+  .portrait-frame {
     position: relative;
     top: 0;
-    height: 120vw;
-    min-height: 480px;
+    width: min(100%, 480px);
   }
 
   .about-intro h3 {
