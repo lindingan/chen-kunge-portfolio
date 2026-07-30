@@ -576,7 +576,20 @@ button {
 }
 
 .project-card {
+  position: relative;
   grid-column: span 6;
+}
+
+.project-detail-link {
+  position: absolute;
+  inset: 0;
+  z-index: 8;
+  cursor: pointer;
+}
+
+.project-detail-link:focus-visible {
+  outline: 2px solid #9eb0ff;
+  outline-offset: 6px;
 }
 
 .project-card:nth-child(3n + 1) {
@@ -623,6 +636,161 @@ button {
 .project-card:hover .project-cover::after {
   box-shadow: inset 0 0 0 1px rgba(224, 230, 255, 0.85),
     inset 0 -120px 130px rgba(120, 143, 244, 0.1);
+}
+
+.project-card:has(.project-detail-link) .project-arrow {
+  transition: transform 0.35s ease;
+}
+
+.project-card:has(.project-detail-link):hover .project-arrow {
+  transform: translate(3px, -3px);
+}
+
+/* Project detail — a restrained shell around full-width process imagery. */
+.project-detail-page {
+  min-height: 100vh;
+  color: var(--ink);
+  background: #eef1ff;
+}
+
+.detail-nav {
+  position: fixed;
+  z-index: 100;
+  inset: 16px 16px auto;
+  height: 56px;
+  max-width: 1668px;
+  margin: 0 auto;
+  padding: 0 24px;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  border: 1px solid rgba(255, 255, 255, 0.58);
+  border-radius: 999px;
+  background: rgba(250, 250, 248, 0.82);
+  box-shadow: 0 10px 40px rgba(20, 21, 26, 0.06);
+  backdrop-filter: blur(16px);
+}
+
+.detail-nav > span {
+  color: var(--muted);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+}
+
+.detail-back {
+  justify-self: end;
+  font-size: 12px;
+  font-weight: 650;
+}
+
+.detail-back b {
+  margin-left: 10px;
+  font-size: 16px;
+}
+
+.detail-hero {
+  min-height: 72vh;
+  padding: clamp(150px, 14vw, 230px) var(--pad) clamp(80px, 8vw, 130px);
+  display: grid;
+  grid-template-columns: minmax(160px, 0.5fr) 2fr auto;
+  align-items: end;
+  gap: clamp(30px, 6vw, 100px);
+  background:
+    radial-gradient(circle at 78% 24%, rgba(255, 255, 255, 0.9), transparent 25%),
+    linear-gradient(135deg, #dfe5ff, #f7f7f4 66%);
+}
+
+.detail-hero-index {
+  color: #8da2f4;
+  font-size: clamp(100px, 14vw, 230px);
+  font-weight: 700;
+  line-height: 0.72;
+  letter-spacing: -0.09em;
+}
+
+.detail-hero p,
+.detail-scroll {
+  color: #666a77;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+}
+
+.detail-hero h1 {
+  max-width: 900px;
+  margin: 18px 0 34px;
+  font-size: clamp(56px, 7.5vw, 132px);
+  line-height: 0.96;
+  letter-spacing: -0.065em;
+}
+
+.detail-hero ul {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  list-style: none;
+}
+
+.detail-hero li {
+  padding: 8px 13px;
+  border: 1px solid rgba(20, 21, 26, 0.18);
+  border-radius: 999px;
+  font-size: 11px;
+}
+
+.detail-scroll {
+  padding-bottom: 4px;
+  white-space: nowrap;
+}
+
+.detail-gallery {
+  width: min(calc(100% - 2 * var(--pad)), 1500px);
+  margin: clamp(54px, 6vw, 96px) auto;
+  overflow: hidden;
+  background: #fff;
+  box-shadow: 0 28px 90px rgba(73, 88, 145, 0.12);
+}
+
+.detail-gallery img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.detail-footer {
+  min-height: 48vh;
+  padding: clamp(90px, 10vw, 170px) var(--pad) 70px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: white;
+  background: #15161a;
+}
+
+.detail-footer > div > span {
+  color: rgba(255, 255, 255, 0.46);
+  font-size: 9px;
+  letter-spacing: 0.17em;
+}
+
+.detail-footer h2 {
+  margin: 12px 0 0;
+  font-size: clamp(54px, 7vw, 118px);
+  letter-spacing: -0.065em;
+}
+
+.detail-footer > a {
+  padding: 15px 20px;
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  border-radius: 999px;
+  font-size: 13px;
+}
+
+.detail-footer > a span {
+  margin-left: 18px;
 }
 
 .project-cover-caption,
@@ -1150,6 +1318,44 @@ button {
 @media (max-width: 760px) {
   :root {
     --pad: 20px;
+  }
+
+  .detail-nav {
+    grid-template-columns: 1fr auto;
+  }
+
+  .detail-nav > span {
+    display: none;
+  }
+
+  .detail-hero {
+    min-height: 68vh;
+    grid-template-columns: 1fr;
+    align-content: end;
+  }
+
+  .detail-hero-index {
+    font-size: 92px;
+  }
+
+  .detail-hero h1 {
+    font-size: 52px;
+  }
+
+  .detail-scroll {
+    display: none;
+  }
+
+  .detail-gallery {
+    width: 100%;
+    margin: 0;
+    box-shadow: none;
+  }
+
+  .detail-footer {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 58px;
   }
 
   .section {
