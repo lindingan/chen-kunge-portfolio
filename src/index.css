@@ -701,6 +701,20 @@ button {
     linear-gradient(135deg, #dfe5ff, #f7f7f4 66%);
 }
 
+.xigua-detail-page {
+  background: #eaf7ff;
+}
+
+.xigua-detail-page .detail-hero {
+  background:
+    radial-gradient(circle at 78% 22%, rgba(255, 255, 255, 0.94), transparent 27%),
+    linear-gradient(135deg, #d8f5ff, #f7f7f4 66%);
+}
+
+.xigua-detail-page .detail-hero-index {
+  color: #43bdf1;
+}
+
 .detail-hero-index {
   color: #8da2f4;
   font-size: clamp(100px, 14vw, 230px);
