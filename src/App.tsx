@@ -504,8 +504,12 @@ function Contact() {
             </div>
           </div>
           <div className="qr-placeholder">
-            <div>QR</div>
-            <span>微信二维码占位</span>
+            <img
+              src={`${import.meta.env.BASE_URL}contact/wechat-qr.jpg`}
+              alt="陈琨戈微信二维码"
+              loading="lazy"
+            />
+            <span>WECHAT QR / 扫码联系</span>
           </div>
         </div>
         <footer>
