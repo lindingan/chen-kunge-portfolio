@@ -624,6 +624,22 @@ button {
   transition: box-shadow 0.45s ease;
 }
 
+.project-image {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.85s cubic-bezier(0.22, 1, 0.36, 1),
+    filter 0.55s ease;
+}
+
+.project-card:hover .project-image {
+  transform: scale(1.035);
+  filter: saturate(1.04) brightness(1.02);
+}
+
 .project-card:hover .project-cover::after {
   box-shadow: inset 0 0 0 1px rgba(224, 230, 255, 0.85),
     inset 0 -120px 130px rgba(120, 143, 244, 0.1);
@@ -636,6 +652,15 @@ button {
   font-size: 8px;
   font-weight: 700;
   letter-spacing: 0.16em;
+}
+
+.project-cover-caption {
+  padding: 7px 10px;
+  border-radius: 999px;
+  color: #fff;
+  background: rgba(17, 18, 23, 0.42);
+  text-shadow: 0 1px 12px rgba(0, 0, 0, 0.28);
+  backdrop-filter: blur(8px);
 }
 
 .project-cover-caption {
