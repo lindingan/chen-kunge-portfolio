@@ -269,15 +269,17 @@ function About() {
         <SectionHeading eyebrow="ABOUT ME" title="关于我" index="02" />
         <div className="about-grid">
           <motion.div
-            className="portrait-placeholder"
+            className="portrait-frame"
             variants={reveal}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, amount: 0.25 }}
           >
-            <div className="portrait-monogram">CKG</div>
-            <span>PORTRAIT PLACEHOLDER</span>
-            <em>建议尺寸 4 : 5</em>
+            <img
+              src={`${import.meta.env.BASE_URL}profile/chen-kunge.jpg`}
+              alt="视觉设计师陈琨戈个人照片"
+            />
+            <span>CHEN KUNGE / VISUAL DESIGNER</span>
           </motion.div>
           <motion.div
             className="about-copy"
