@@ -34,13 +34,13 @@ const designTools: DesignTool[] = [
     name: "BLENDER",
     mark: "",
     className: "tool-blender",
-    image: "tools/blender.png",
+    image: "tool-blender.png",
   },
   {
     name: "CHATGPT",
     mark: "",
     className: "tool-chatgpt",
-    image: "tools/chatgpt.png",
+    image: "tool-chatgpt.png",
   },
   { name: "GEMINI", mark: "✦", className: "tool-gemini" },
   { name: "MIDJOURNEY", mark: "M", className: "tool-midjourney" },
@@ -371,7 +371,7 @@ function Hero() {
           </div>
           <img
             className="cursor-glyph"
-            src={`${import.meta.env.BASE_URL}hero/metal-cursor-cutout.png`}
+            src={`${import.meta.env.BASE_URL}hero-metal-cursor-cutout.png`}
             alt=""
             aria-hidden="true"
           />
@@ -1245,7 +1245,8 @@ function PetVlogProjectDetail() {
 function TmallProjectDetail() {
   const detailImages = Array.from(
     { length: 7 },
-    (_, index) => `detail-${String(index + 1).padStart(2, "0")}.png`,
+    (_, index) =>
+      `projects/tmall-1212-detail-${String(index + 1).padStart(2, "0")}.jpg`,
   );
 
   return (
@@ -1278,7 +1279,7 @@ function TmallProjectDetail() {
         {detailImages.map((image, index) => (
           <motion.img
             key={image}
-            src={`${import.meta.env.BASE_URL}projects/tmall-1212/${image}`}
+            src={`${import.meta.env.BASE_URL}${image}`}
             alt={`天猫双 12 年终大促项目展示 ${index + 1}`}
             loading={index === 0 ? "eager" : "lazy"}
             initial={{ opacity: 0, y: 22 }}
@@ -1331,7 +1332,7 @@ function ThreeDimensionalProjectDetail() {
 
       <section className="detail-gallery" aria-label="多元风格 3D 场景建模项目作品">
         <motion.img
-          src={`${import.meta.env.BASE_URL}projects/3d-scene/detail-01.png`}
+          src={`${import.meta.env.BASE_URL}projects/3d-scene-detail-01.jpg`}
           alt="多元风格 3D 场景建模项目展示"
           loading="eager"
           initial={{ opacity: 0, y: 22 }}
